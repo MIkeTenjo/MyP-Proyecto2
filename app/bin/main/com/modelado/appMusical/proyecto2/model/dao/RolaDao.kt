@@ -21,10 +21,10 @@ interface RolaDao{
      * 
      * @param [Rola] La canción a insertar en la base de datos.
      * 
-     * @return [False] si hubo un error al insertar en la base de datos.
-     * [True] si se tuvo éxito al insertar.
+     * @return La [Rola] que se agregó por último a la base de datos.
+     * 'null' si no se logró agregar la Rola.
      */
-    fun insert(rola: Rola): Boolean
+    public fun insert(rola: Rola): Rola?
 
     /**
      * Obtiene la canción específica dada su idenditificación(ID) 
@@ -35,14 +35,53 @@ interface RolaDao{
      * @return El objeto de tipo Rola relacionado con el [id]. Null si no
      * se encuentra tal Canción.
      */
-    fun getById(id: Int): Rola?
+    public fun getById(id: Int): Rola?
 
     /**
      * Devuelve todas las canciones en la base de datos.
      * 
      * @return Una lista con las canciones contenidas en la base de datos.
      */
-    fun getAll(): List<Rola>
+    public fun getAll(): List<Rola>
+
+    /**
+     * Busca las Rolas en la base de datos con un titúlo en especifico y la
+     * regresa en una lista. EL titúlo de la Rola puede no tener el titúlo 
+     * exacto buscado, pero si contenerla.
+     * 
+     * @param [title] El titúlo de las canciones con interés a buscar. 
+     * 
+     * @return Una lista con todas las Rolas contenidas en la base de datos
+     * que contengan como titúlo el titúlo buscado.
+     */
+    public fun searchByTitle(title: String): List<Rola>
+
+    /**
+     * Busca las Rolas en la base de datos con un tipo de genéro en especifico 
+     * y la regresa en una lista. EL genéro de la Rola puede no ser similar, pero
+     * si contenerla. Si hay un genéro llamado "Rock" en la base de datos y el
+     * usuario busca "Rock1" puede no encontrarse, en cambio, si hay un genéro
+     * llamado "Rock_" y el usuario busca "Rock" se mostrará "Rock_" como uno de 
+     * los genéros buscados.
+     * 
+     * @param [genre] El genéro de las canciones con interés a buscar. 
+     * 
+     * @return Una lista con todas las Rolas contenidas en la base de datos
+     * que contengan como genéro el genéro buscado.
+     */
+    public fun searchByGenre(genre: String): List<Rola>
+
+    /**
+     * Busca las rolas en la base de datos que comparten un año en especifico.
+     * 
+     * Las rolas que devuelva el método estarán ordenadas Dado su album y la
+     * secuencia en la que fueron públicadas. 
+     * 
+     * @param [year] El año en el que fueron creadas las rolas con interés a buscar. 
+     * 
+     * @return Una lista con las Rolas que comparten el mismo año en el fueron públicadas
+     */
+    public fun searchByYear(year: Int): List<Rola>
 
     /**
      * Sobreescribe los datos de una canción que ya existe en la base de datos.
@@ -53,7 +92,7 @@ interface RolaDao{
      * sobreescribir la canción: [True] si el sobreescrito fue
      * éxitoso. [False] en otro caso.
      */
-    fun update(rola: Rola): Boolean
+    public fun update(rola: Rola): Boolean
 
     /**
      * Borra la canción de la base de datos dado su ID.
@@ -65,5 +104,5 @@ interface RolaDao{
      * de haber eliminado la canción: [True] Si la eliminación de la
      * canción fue éxitosa. [False] de otra manera.
      */
-    fun delete(id: Int): Boolean
+    public fun delete(id: Int): Boolean
 }

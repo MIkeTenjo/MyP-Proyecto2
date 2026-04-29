@@ -5,7 +5,7 @@ package com.modelado.appMusical.proyecto2.model.entities
  * así como sus referencias en la base de datos.
  */
 data class Rola(
-    val id_rola: Int? = null,
+    val id_rola: Int = 0,
     val id_performer: Int,
     val id_album: Int,
     val path: String,

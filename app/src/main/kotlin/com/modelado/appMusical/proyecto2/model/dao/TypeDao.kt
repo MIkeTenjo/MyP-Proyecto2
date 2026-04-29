@@ -12,7 +12,7 @@ import com.modelado.appMusical.proyecto2.model.entities.Type
  * La clase ofrece acciones a implementar para la gestión de datos en una
  * base de datos musical.
  */
-interface TypeDao{
+public interface TypeDao{
 
      /**
      * Método que recibe un objeto Type (un tipo de artista) 
@@ -25,7 +25,7 @@ interface TypeDao{
      * @return False si hubo un error al insertar en la base de datos.
      * True si se tuvo éxito al insertar.
      */
-    fun insert(type: Type): Boolean
+    public fun insert(type: Type): Boolean
 
     /**
      * Obtiene el tipo del artista específico dado su idenditificación(ID)
@@ -44,7 +44,7 @@ interface TypeDao{
      * @return El objeto de tipo Type relacionado con el id. Null si no se 
      * proporciono un id del 0-2.
      */
-    fun getById(id: Int): Type?
+    public fun getById(id: Int): Type?
 
     /**
      * Devuelve todos los tipos de artistas manejables en la base de datos.
@@ -52,6 +52,6 @@ interface TypeDao{
      * @return Una lista con los tipos de artistas manejables en 
      * la base de datos.
      */
-    fun getAll(): List<Type>
+    public fun getAll(): List<Type>
 
 }

@@ -7,7 +7,7 @@ package com.modelado.appMusical.proyecto2.model.entities
  * del artista, además de su identificación en la base de datos.
  */
 data class Album(
-    val id_album: Int? = null,
+    val id_album: Int = 0,
     val path: String,
     val name: String,
     val year: Int
