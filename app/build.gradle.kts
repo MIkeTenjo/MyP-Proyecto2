@@ -12,6 +12,9 @@ repositories {
 }
 
 dependencies {
+
+    implementation("net.jthink:jaudiotagger:3.0.1")
+    
     //Librería oficial de SQLite para Java/Kotlin
     implementation("org.xerial:sqlite-jdbc:3.45.1.0")
 
