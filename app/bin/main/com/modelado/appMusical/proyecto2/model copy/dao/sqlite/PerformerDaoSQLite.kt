@@ -2,8 +2,6 @@ package com.modelado.appMusical.proyecto2.model.dao.sqlite
 
 import com.modelado.appMusical.proyecto2.model.dao.PerformerDao
 import com.modelado.appMusical.proyecto2.model.entities.Performer
-import com.modelado.appMusical.proyecto2.model.entities.Person
-import com.modelado.appMusical.proyecto2.model.entities.Group
 import java.sql.Connection
 import java.sql.ResultSet
 import java.sql.Statement
@@ -11,7 +9,6 @@ import java.sql.Statement
 public class PerformerDaoSQLite(private val connection: Connection): PerformerDao{
     private fun convertToPerformer(rs: ResultSet): Performer{
         return Performer(
-                    id_type = rs.getInt("id_type"),
                     id_performer = rs.getInt("id_performer"),
                     name = rs.getString("name"))
     }
@@ -140,34 +137,6 @@ public class PerformerDaoSQLite(private val connection: Connection): PerformerDa
             }
         } catch (e: Exception) {
             println("Error al obtener detalles de la persona: ${e.message}")
-            null
-        }
-    }
-
-    override fun getGroupDetails(id: Int): Group? {
-        val sql = """
-            SELECT g.id_group, p.name, g.start_date, g.end_date 
-            FROM performers p 
-            JOIN groups g ON p.id_performer = g.id_performer 
-            WHERE p.id_performer = ?
-        """.trimIndent()
-
-        return try {
-            connection.prepareStatement(sql).use { stmt ->
-                stmt.setInt(1, id)
-                stmt.executeQuery().use { rs ->
-                    if (rs.next()) {
-                        Group(
-                            id_group = rs.getInt("id_group"),
-                            name = rs.getString("name"),
-                            start_date = rs.getString("start_date"),
-                            end_date = rs.getString("end_date") // Maneja el null si el grupo sigue activo
-                        )
-                    } else null
-                }
-            }
-        } catch (e: Exception) {
-            println("Error al obtener detalles del grupo: ${e.message}")
             null
         }
     }
