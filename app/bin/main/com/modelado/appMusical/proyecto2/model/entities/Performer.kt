@@ -9,6 +9,6 @@ package com.modelado.appMusical.proyecto2.model.entities
  */
 data class Performer(
     val id_performer: Int? = null,
-    val id_Type: Int,
+    val id_type: Int,
     val name: String
 )

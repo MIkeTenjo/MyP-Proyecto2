@@ -27,10 +27,10 @@ interface PerformerDao{
      * @param [person] El mismo objeto artista a insertar en la base de datos
      * pero de tipo Person(solista).
      * 
-     * @return [False] si hubo un error al insertar en la base de datos.
-     * [True] si se tuvo éxito al insertar.
+     * @return El interprete (solista) que se agregó por último a la base de
+     * datos. 'null' si no se logró agregar el interprete. 
      */
-    fun insertPerson(performer: Performer, person: Person): Boolean
+    fun insertPerson(performer: Performer, person: Person): Person?
 
     /**
      * Método que recibe un objeto Artista que se sabe que es un grupo
@@ -43,10 +43,10 @@ interface PerformerDao{
      * @param [person] El mismo objeto Artista (grupo Artista) a insertar 
      * en la base de datos pero de tipo Group.
      * 
-     * @return [False] si hubo un error al insertar en la base de datos.
-     * [True] si se tuvo éxito al insertar.
+     * @return El interprete (grupo Artista) que se agregó por último a la
+     * base de datos. 'null' si no se logró agregar el interprete. 
      */
-    fun insertGroup(performer: Performer, group: Group): Boolean
+    fun insertGroup(performer: Performer, group: Group): Group?
 
     /**
      * Obtiene el Artista(o grupo Artista) específico dada su 
