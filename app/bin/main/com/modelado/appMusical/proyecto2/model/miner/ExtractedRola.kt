@@ -9,11 +9,12 @@ package com.modelado.appMusical.proyecto2.model.miner
  * 
  */
 data class ExtractedRola(
-    private val path: String,
-    val performerName: String,
+    val path: String,
+    val performer: String,
     val title: String,
-    val albumName: String,
+    val album: String,
     val date: Int,
     val genre: String,
     val track: Int
+    val duration: Int = 0
 )
